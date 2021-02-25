@@ -14,7 +14,7 @@ The source code represents our implementation of Algorithm 2, appear in the arti
 ##### Content of the package
 
 * The directory ```src``` contains the source codes. The file ```basic_functions.jl``` contains some functions needed to build a (degree-corrected) Erdos-Renyi random graph, together with the non-backtracking and Bethe-Hessian matrix. Overall these functions are needed to reproduce the main theoretical results of our paper. The file ```NBNC.jl``` provides our implementation of Algorithm 2 with all the functions associated to it. Finally ```clustering_algorithms.jl``` contains the implementation of the three spectral algorithms we use as a benchmark.
-* The directory ```data``` is empty. [Download from this link] the files ```featuresGAN.dat``` and ```featuresGAN_small.dat``` containing the features of 40k (resp. 6k) GAN images that can be used to test our algorithm and then put them in the folder ```data```.
+* The directory ```data``` is empty. [Download from this link]() the files ```featuresGAN.dat``` and ```featuresGAN_small.dat``` containing the features of 40k (resp. 6k) GAN images that can be used to test our algorithm and then put them in the folder ```data```.
 * The notebook ```Figure 2-5``` provides the code needed to reproduce the Figures 2,3,4,5 of our article. These figures constitute the support to our main theoretical findings.
 * The notebook ```DEMO``` explains how to: i) generate a synthetic graph on which node classification can be performed; ii) use the files contained in the directory ```data```; iii) use the algorithms for node classifications provided in the ```src``` folder. 
 
