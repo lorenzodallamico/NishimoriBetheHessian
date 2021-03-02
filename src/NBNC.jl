@@ -431,7 +431,7 @@ function exitFromLoop(counter::Int64, n_max::Int64, verbose::Int64, s::Array{Flo
     if β > β_threshold*sqrt(c)*β_SG
 
         if verbose >= 1
-        printstyled("\nThe estimated β is too large: this means that you are in a scenario where Nishimori Bethe Hessuian becomes numerically unstable but where the problem is sufficiently easy for a mean field approximation. The estimation of β_N is interrupted.\n"; color = 166)
+        printstyled("\nThe estimated β is too large: this means that you are in a scenario where Nishimori Bethe Hessian becomes numerically unstable but where the problem is sufficiently easy for a mean field approximation. The estimation of β_N is interrupted.\n"; color = 166)
         end
         flag = 1
     end
