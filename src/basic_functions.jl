@@ -25,28 +25,18 @@ function adjacency_matrix_ER(c::Float64,n::Int64)
     
     g = erdos_renyi(n,c/n) # erdos-renyi graph taken from the package LightGraphs.jl
 
-    first = zeros(g.ne) # first column of the edge list
-    second = zeros(g.ne) # second column of the edge list
-    counter = 1
-    for i=1:n
-        v = g.fadjlist[i][g.fadjlist[i] .> i]
-        m = length(v)
-        first[counter:counter+m-1] .= i
-        second[counter:counter+m-1] = v
-        counter = counter + m
-    end
+    A = adjacency_matrix(g)
+    I, J, _ = findnz(A)
+    edge_list = hcat(I,J)
+    idx = I .> J # we use an undirected edge list
+    edge_list = edge_list[idx,:]
 
-    edge_list = hcat(first,second) # create edge list
-    edge_list = convert(Array{Int64}, edge_list)
-    A = sparse(edge_list[:,1],edge_list[:,2], ones(length(edge_list[:,1])), n,n) # create sparse adjacency matrix
-
-
-    return A+A', edge_list
+    return A, edge_list
     
 end
 
 
-################################################################################################################################		
+################################################################################################################################
 
 
 

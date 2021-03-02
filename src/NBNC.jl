@@ -122,14 +122,14 @@ Optional entries
 ----------
 * ```n_max```        : maximal number of iterations run by the algorithm (Int64). By default set to 25 
 * ```ϵ```            : precision of the estimates (Float64). By default set to 2*10^(-5) 
-* ```β_threshold```      : The largest value of β_N that can be computed is sqrt(c)*β_SG*β_threshold (Float64). By default set to 2.
+* ```β_threshold```  : The largest value of β_N that can be computed is sqrt(c)*β_SG*β_threshold (Float64). By default set to 2.
 * ```verbose```      : equal to 0,1,2 sets an increasing level of verbosity. 0 indicates no output. By default set to 2 (Int64)
 
 Returns
 -------
 ```β_N```            : estimate of the Nishimori temperature (Float64)
 """
-function find_β_N(edge_list::Array{Int64,2}, J_edge_list::Array{Float64,1}, n::Int64, c::Float64, β_SG::Float64; n_max = 25, ϵ = 2*10^(-5), β_threshold = 2., verbose = 2)
+function find_β_N(edge_list::Array{Int64,2}, J_edge_list::Array{Float64,1}, n::Int64, c::Float64, β_SG::Float64; n_max = 25, ϵ = 2*10^(-5), β_threshold = 2., verbose = 1)
     
     flag = 0 # the algorithm runs as  long as this flag is equal to zero
     counter = 1
@@ -190,7 +190,7 @@ function find_β_N(edge_list::Array{Int64,2}, J_edge_list::Array{Float64,1}, n::
         if verbose >= 2
             printstyled("\nIteration # ", counter, ": ",
                 "\nThe current estimate of β_N is ", β,
-                "\nThe smallest eigenvalue is ", s[1]*c*(1+mean(sinh.(β*J_edge_list).^2)), "\n" 
+                "\nThe smallest eigenvalue is ", s[1]*c*(1+mean(sinh.(β_SG*J_edge_list).^2)), "\n" 
                 ; color = 4)
             
         end
@@ -376,7 +376,7 @@ Entry
 * ```J_edge_list```  : weights associated to the edge list ({Float64, 1})
 * ```ϵ```            : precision error (Float64)
 * ```β_old```        : last estimate of β_N (Float64)
-* ```β_threshold```  : The largest value of β_N that can be computed is sqrt(c)*β_SG*β_threshold (Float64). By default set to 2.
+* ```β_threshold```  : The largest value of β_N that can be computed is sqrt(c)*β_SG*β_threshold (Float64).
 * ```β_SG```         : spin-glass phase transition temperature (Float64)
 
 Returns
@@ -409,7 +409,7 @@ function exitFromLoop(counter::Int64, n_max::Int64, verbose::Int64, s::Array{Flo
     
     #################
     
-    if abs(s[1]*(1+c*mean(sinh.(β*J_edge_list).^2))) < ϵ # if the smallest eigenvalue of L is sufficiently 
+    if abs(s[1]*(1+c*mean(sinh.(β_SG*J_edge_list).^2))) < ϵ # if the smallest eigenvalue of L is sufficiently 
                                                                     # close tozero, then we get out of the  loop
         flag = 1
         
@@ -428,9 +428,11 @@ function exitFromLoop(counter::Int64, n_max::Int64, verbose::Int64, s::Array{Flo
     
     #########################
 
-    if β > β_threshold*sqrt(c)*β_SG/sqrt(var(J_edge_list))
+    if β > β_threshold*sqrt(c)*β_SG
 
-        printstyled("\nThe estimate of β_N has reached its maximal value. The iteration is stopped. If a finer estimate of β_N is needed, increase the value of β_threshold, but it may be unreliable\n"; color = 166)
+        if verbose >= 1
+        printstyled("\nThe estimated β is too large: this means that you are in a scenario where Nishimori Bethe Hessuian becomes numerically unstable but where the problem is sufficiently easy for a mean field approximation. The estimation of β_N is interrupted.\n"; color = 166)
+        end
         flag = 1
     end
     
