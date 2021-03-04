@@ -1,5 +1,5 @@
 # NBNC
-##### **N**ishimori **B**ethe Hessian for **N**ode **C**lassification
+#### **N**ishimori **B**ethe Hessian for **N**ode **C**lassification
 
 
 These are the codes to reproduce the results appearing in the article 
