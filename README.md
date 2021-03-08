@@ -3,7 +3,7 @@
 
 
 These are the codes to reproduce the results appearing in the article 
-* Dall'Amico, Couillet and Tremblay - *[Nishimori meets Bethe: a spectral method for node classification in sparse weighted graphs]()* (arXiv:)
+* Dall'Amico, Couillet and Tremblay - *[Nishimori meets Bethe: a spectral method for node classification in sparse weighted graphs](https://arxiv.org/abs/2103.03561)* 
 
 The source code represents our implementation of Algorithm 2, appear in the article cited above and can be used to perform node classification on a weighted graph, as well as to perform binart classification of high dimensional vectors. 
 
