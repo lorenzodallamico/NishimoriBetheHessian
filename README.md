@@ -8,8 +8,7 @@ These are the codes to reproduce the results appearing in the article
 The source code represents our implementation of Algorithm 2, appear in the article cited above and can be used to perform node classification on a weighted graph, as well as to perform binart classification of high dimensional vectors. 
 
 > If you make use of these codes, please consider to cite the related article.
-> 
-> ```@article{Dall_Amico_2021,
+```@article{Dall_Amico_2021,
 	doi = {10.1088/1742-5468/ac21d3},
 	url = {https://doi.org/10.1088/1742-5468/ac21d3},
 	year = 2021,
@@ -20,8 +19,7 @@ The source code represents our implementation of Algorithm 2, appear in the arti
 	pages = {093405},
 	author = {Lorenzo Dall'Amico and Romain Couillet and Nicolas Tremblay},
 	title = {Nishimori meets Bethe: a spectral method for node classification in sparse weighted graphs},
-	journal = {Journal of Statistical Mechanics: Theory and Experiment}
-> }```
+	journal = {Journal of Statistical Mechanics: Theory and Experiment}}```
 
 
 
